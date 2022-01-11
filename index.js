@@ -196,12 +196,12 @@ client.connect(err => {
     })
     // make admin 
     app.put('/users/admin', async (req, res) => {
-        const email = req.body;
-        const requester = req.docodedEmail;
+        const email = req.body.admin;
+        const requester = req.body.user;
         if (requester) {
             const requesterAccount = await usersCollection.findOne({ email: requester });
             if (requesterAccount.role === 'admin') {
-                const filter = { email: email.adminData };
+                const filter = { email: email };
                 const updateDoc = { $set: { role: 'admin' } };
                 const result = await usersCollection.updateOne(filter, updateDoc);
                 res.send(result);
