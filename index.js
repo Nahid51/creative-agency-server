@@ -116,23 +116,23 @@ client.connect(err => {
         const filter = { tran_id: info.tran_id };
         const updateDoc = { $set: { val_id: info.val_id } };
         const order = await ordersCollection.updateOne(filter, updateDoc);
-        res.status(200).redirect(`http://localhost:3000/dashboard/bookinglist/${info.tran_id}`);
+        res.status(200).redirect(`https://creative-agency-20caa.web.app/dashboard/bookinglist/${info.tran_id}`);
     })
     app.post('/fail', async (req, res) => {
         const info = req.body;
         const query = { tran_id: info.tran_id };
         const order = await ordersCollection.deleteOne(query);
-        res.status(400).redirect('http://localhost:3000/failed');
+        res.status(400).redirect('https://creative-agency-20caa.web.app/failed');
     })
     app.post('/cancel', async (req, res) => {
         const info = req.body;
         const query = { tran_id: info.tran_id };
         const order = await ordersCollection.deleteOne(query);
-        res.status(200).redirect('http://localhost:3000/failed');
+        res.status(200).redirect('https://creative-agency-20caa.web.app/failed');
     })
     app.post('/ipn', async (req, res) => {
         const info = req.body;
-        res.status(200).redirect('http://localhost:3000/');
+        res.status(200).redirect('https://creative-agency-20caa.web.app/');
     })
     // get specific order info
     app.get('/orders/:tran_id', async (req, res) => {
